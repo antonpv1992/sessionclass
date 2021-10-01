@@ -1,19 +1,34 @@
 <?php 
 
+const DS = DIRECTORY_SEPARATOR;
+define("ROOT", str_replace("\\", DS, __DIR__));
+
+spl_autoload_register(
+    function ($class) {
+        $file = ROOT . DS . str_replace('\\', DS, $class) . '.php';
+        if (is_file($file)) {
+            require_once $file;
+        }
+    }
+);
+
+use Session\Session;
+
+$session = new Session();
+
 $email = "admin@admin.loc";
 $password = "pass";
 
-if($session->getItem('email') === $email && $session->getItem['password'] === $pass){
+var_dump($session->getKeyFromSession('password'));
+
+if($session->getKeyFromSession('email') === $email && $session->getKeyFromSession('password') === $password) {
     echo "Hello Admin!";
 } else {
     echo "You not registrated";
-    header('Location: http://session.loc/');
+    header('Location: http://sessionclass.loc/index.php');
 }
 
 ?>
-
-
-
 
 <!doctype html>
 <html lang="en">

@@ -47,16 +47,17 @@ class Session
         session_unset();
         session_destroy();
         setcookie(session_name(), session_id(), time()-3600);
+        session_write_close();
     }
 
     public function checkUser()
     {
-        if( !empty($_SESSION)
-            || $_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] 
-            || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR'])
-            {
-                $this->sessionCLean();
-            }       
+        if(!empty($_SESSION) && isset($_SESSION['agent']) && isset($_SESSION['ip'])){
+            if(($_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] 
+                || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR'])){
+                    $this->sessionCLean();
+            }  
+        }       
         $this->run();    
     }
 }
