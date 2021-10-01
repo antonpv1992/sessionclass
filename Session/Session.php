@@ -46,8 +46,7 @@ class Session
     {
         session_unset();
         session_destroy();
-        setcookie(session_name(), session_id(), time()-3600);
-        session_write_close();
+        setcookie(session_name(), session_id(), time() - 3600);
     }
 
     public function checkUser()
