@@ -2,7 +2,7 @@
 
 namespace Session;
 
-Class Session
+class Session
 {
 
     public function __construct()
