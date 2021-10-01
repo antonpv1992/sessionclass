@@ -42,7 +42,7 @@ class Session
         }
     }
 
-    public function sessionCLean()
+    public function sessionClean()
     {
         session_unset();
         session_destroy();
@@ -54,7 +54,7 @@ class Session
         if(!empty($_SESSION) && isset($_SESSION['agent']) && isset($_SESSION['ip'])){
             if(($_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] 
                 || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR'])){
-                    $this->sessionCLean();
+                    $this->sessionClean();
             }  
         }       
         $this->run();    
