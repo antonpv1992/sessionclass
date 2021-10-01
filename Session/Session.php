@@ -5,41 +5,45 @@ namespace Session;
 Class Session
 {
 
-    private $session = [];
+    //private $session = [];
 
     public function __construct()
     {
-        //session_start();
+        session_start();
     }
 
-    public function setItem($key, $value)
+    public function setKeyInSession($key, $value)
     {
-        $this->session[$key] = $value;
+        //$this->session[$key] = $value;
+        $_SESSION[$key] = $value;
     }
 
-    public function setItems($array)
+    public function setArrayInSession($array)
     {
         foreach($array as $key => $value)
         {
-            $this->session[$key] = $value;
+            //$this->session[$key] = $value;
+            $_SESSION[$key] = $value;
         }
     }
 
     public function getItem($key)
     {
-        if(isset($this->session[$key])){
-            return $this->session[$key];
+        if(isset($_SESSION[$key])){
+            return $_SESSION[$key];
         } 
         return false;
     }
 
     public function getItems()
     {
-        return $this->session;
+        return $_SESSION;
     }
 
     public function sessionCLean()
     {
-        $this->session = [];
+        session_unset();
+        session_destroy();
+        setcookie(session_name(), session_id(), time()-3600);
     }
 }

@@ -17,7 +17,7 @@ use Session\Session;
 $session = new Session();
 
 if(isset($_POST['email']) && isset($_POST['pass']) ){
-    $session->setItems($_POST);
+    $session->setArrayInSession($_POST);
     //$session->setItem('email', $_POST['email']);
     //$session->setItem('password', $_POST['pass']);
 }
