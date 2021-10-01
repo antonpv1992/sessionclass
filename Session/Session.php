@@ -7,7 +7,7 @@ Class Session
 
     public function __construct()
     {
-        $this->run();
+        $this->checkUser();
     }
 
     public function run()
@@ -51,9 +51,12 @@ Class Session
 
     public function checkUser()
     {
-        if($_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR']){
-            $this->sessionCLean();
-            $this->run();
-        }
+        if( empty($_SESSION)
+            || $_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] 
+            || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR'])
+            {
+                $this->sessionCLean();
+            }       
+        $this->run();    
     }
 }
