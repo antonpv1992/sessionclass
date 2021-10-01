@@ -20,14 +20,10 @@ Class Session
 
     public function setArrayInSession($array)
     {
-        foreach($array as $key => $value)
-        {
-            //$this->session[$key] = $value;
-            $_SESSION[$key] = $value;
-        }
+        $_SESSION = $array;
     }
 
-    public function getItem($key)
+    public function getKeyFromSession($key)
     {
         if(isset($_SESSION[$key])){
             return $_SESSION[$key];
@@ -35,9 +31,16 @@ Class Session
         return false;
     }
 
-    public function getItems()
+    public function getAraryFromSession()
     {
         return $_SESSION;
+    }
+
+    public function removeKeyFromSession($key)
+    {
+        if(isset($_SESSION[$key])){
+            unset($_SESSION[$key]);
+        }
     }
 
     public function sessionCLean()
