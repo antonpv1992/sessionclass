@@ -19,8 +19,6 @@ $session = new Session();
 $email = "admin@admin.loc";
 $password = "pass";
 
-var_dump($session->getKeyFromSession('password'));
-
 if($session->getKeyFromSession('email') === $email && $session->getKeyFromSession('password') === $password) {
     echo "Hello Admin!";
 } else {
