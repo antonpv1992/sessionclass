@@ -5,8 +5,6 @@ namespace Session;
 Class Session
 {
 
-    //private $session = [];
-
     public function __construct()
     {
         session_start();
@@ -14,13 +12,7 @@ Class Session
 
     public function setKeyInSession($key, $value)
     {
-        //$this->session[$key] = $value;
         $_SESSION[$key] = $value;
-    }
-
-    public function setArrayInSession($array)
-    {
-        $_SESSION = $array;
     }
 
     public function getKeyFromSession($key)
@@ -31,7 +23,7 @@ Class Session
         return false;
     }
 
-    public function getAraryFromSession()
+    public function getAllSession()
     {
         return $_SESSION;
     }
