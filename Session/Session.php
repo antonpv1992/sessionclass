@@ -7,7 +7,14 @@ Class Session
 
     public function __construct()
     {
+        $this->run();
+    }
+
+    public function run()
+    {
         session_start();
+        $_SESSION['agent'] = $_SERVER['HTTP_USER_AGENT'];
+        $_SESSION['ip'] = $_SERVER['REMOTE_ADDR']; 
     }
 
     public function setKeyInSession($key, $value)
@@ -40,5 +47,13 @@ Class Session
         session_unset();
         session_destroy();
         setcookie(session_name(), session_id(), time()-3600);
+    }
+
+    public function checkUser()
+    {
+        if($_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR']){
+            $this->sessionCLean();
+            $this->run();
+        }
     }
 }
