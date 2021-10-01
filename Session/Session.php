@@ -51,7 +51,7 @@ Class Session
 
     public function checkUser()
     {
-        if( empty($_SESSION)
+        if( !empty($_SESSION)
             || $_SESSION['agent'] !== $_SERVER['HTTP_USER_AGENT'] 
             || $_SESSION['ip'] !== $_SERVER['REMOTE_ADDR'])
             {
