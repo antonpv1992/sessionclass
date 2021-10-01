@@ -6,7 +6,8 @@ $password = "pass";
 if($session->getItem('email') === $email && $session->getItem['password'] === $pass){
     echo "Hello Admin!";
 } else {
-    echo "You not registrated";    
+    echo "You not registrated";
+    header('Location: http://session.loc/');
 }
 
 ?>
